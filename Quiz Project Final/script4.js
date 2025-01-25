@@ -138,7 +138,7 @@ fetch('back.json')
         });
 
         function calculateResult() {
-            const percentage = (correctAnswers / questions.length) * 100;
+            const percentage = (correctAnswers / questions.length - 1) * 100;
             localStorage.setItem('percentage', percentage);
             if (percentage >= 60) {
                 window.location.href = '6-success.html';
