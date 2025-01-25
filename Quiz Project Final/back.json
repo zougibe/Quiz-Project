@@ -1,0 +1,24 @@
+[{
+    "questions": [
+      {
+        "question": "Which of the following is a correct way to declare a JavaScript variable?",
+        "choices": ["var x = 10;", "variable x = 10;", "let x 10;", "declare x = 10;"],
+        "correctAnswer": "var x = 10;"
+      },
+      {
+        "question": "What does '=== ' signify in JavaScript?",
+        "choices": [
+          "Equality comparison",
+          "Strict equality comparison",
+          "Assignment operator",
+          "None of the above"
+        ],
+        "correctAnswer": "Strict equality comparison"
+      },
+      {
+        "question": "What is the output of `typeof null` in JavaScript?",
+        "choices": ["'object'", "'null'", "'undefined'", "'function'"],
+        "correctAnswer": "'object'"
+      }
+    ]
+  }]  

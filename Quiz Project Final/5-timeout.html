@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Out</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style5.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="status">
+        <i class="fa-solid fa-stopwatch"></i>
+        <h2>Exam Closed</h2>
+      </div>
+
+      <div class="img-gif">
+        <img src="images/Exams.gif" alt="Time Out" />
+      </div>
+
+      <div class="text">
+        <h1>Sorry Time Out!</h1>
+      </div>
+    </div>
+    <script>
+      const fname = localStorage.getItem("fname");
+      const lname = localStorage.getItem("lname");
+      const text = document.querySelector('h1');
+      text.textContent = `Sorry ${fname} ${lname}, Your time Ended `;
+    </script>
+  </body>
+</html>
+

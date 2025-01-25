@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container flex">
+        <div class="image flex">
+            <!-- <img src="Online test.gif"></img> -->
+        </div>
+        <div class="details">
+            <header>
+                <h1>Create An Account</h1>
+                <p>Have Already An Account <span><a href="2-login.html">sign in</a></span></p>
+            </header>
+            <form action="2-login.html" class="flex">
+                <input type="text" class="fname" placeholder="Enter Your First Name" required>
+                <p class="fnameE" style="color: red;"></p>
+                <input type="text" class="lname" placeholder="Enter Your Last Name" required>
+                <div class="lnameE" style="color: red;"></div>
+                <input type="email" class="mail" placeholder="Enter Your Email " required>
+                <div class="mailE" style="color: red;"></div>
+                <input type="password" class="pass" placeholder="Enter Your password">
+                <div class="passE" style="color: red;"></div>
+                <input type="password" class="passC" placeholder="Re-enter Your password">
+                <div class="passCE" style="color: red;"></div>
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
