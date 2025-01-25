@@ -19,6 +19,56 @@
         "question": "What is the output of `typeof null` in JavaScript?",
         "choices": ["'object'", "'null'", "'undefined'", "'function'"],
         "correctAnswer": "'object'"
+      },
+      {
+        "question": "Which function is used to parse a string into an integer in JavaScript?",
+        "choices": ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
+        "correctAnswer": "parseInt()"
+      },
+      {
+        "question": "What is the purpose of the `map()` method in JavaScript?",
+        "choices": [
+          "Iterates through an array and modifies the original array",
+          "Creates a new array by applying a function to each element of the array",
+          "Filters elements of an array based on a condition",
+          "Finds the index of a specific element in an array"
+        ],
+        "correctAnswer": "Creates a new array by applying a function to each element of the array"
+      },
+      {
+        "question": "Which of the following is a JavaScript data type?",
+        "choices": ["String", "Number", "Boolean", "All of the above"],
+        "correctAnswer": "All of the above"
+      },
+      {
+        "question": "How can you create a function in JavaScript?",
+        "choices": [
+          "function myFunction() {}",
+          "function = myFunction() {}",
+          "create myFunction() {}",
+          "function:myFunction() {}"
+        ],
+        "correctAnswer": "function myFunction() {}"
+      },
+      {
+        "question": "What will be the output of `console.log(2 + '2')`?",
+        "choices": ["4", "'22'", "'2 2'", "Error"],
+        "correctAnswer": "'22'"
+      },
+      {
+        "question": "What does the `push()` method do in JavaScript?",
+        "choices": [
+          "Adds an element to the end of an array",
+          "Removes the last element from an array",
+          "Adds an element to the beginning of an array",
+          "Removes the first element from an array"
+        ],
+        "correctAnswer": "Adds an element to the end of an array"
+      },
+      {
+        "question": "Which keyword is used to define a constant in JavaScript?",
+        "choices": ["var", "let", "const", "constant"],
+        "correctAnswer": "const"
       }
     ]
   }]  
