@@ -44,9 +44,12 @@ function validateEmail() {
     if (!mailReg.test(mail.value)) {
         document.querySelector(".mailE").textContent = "Enter Valid Mail";
         mail.classList.add("apply-shake");
-        return false;
+        return false;   
     }
-    if (isDuplicateEmail(mail.value.toLowerCase())) {
+    console.log(mail.value);
+    
+    if (isDuplicateEmail(mail.value)) {
+        console.log("Email already exists!");
         document.querySelector(".mailE").textContent = "Email already exists!";
         mail.classList.add("apply-shake");
         return false;
@@ -101,7 +104,7 @@ btn.addEventListener("click", function (e) {
         isValidConfirmPassword
     ) {
         const user = {
-            email: mail.value,
+            email: mail.value.toLowerCase(),
             password: pass.value,
             fname: fname.value,
             lname: lname.value,
