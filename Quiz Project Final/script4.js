@@ -5,6 +5,9 @@ const prevButton = document.querySelector('.back');
 const submitButton = document.querySelector('.submit');
 const flagButton = document.querySelector('.flaged');
 const questionsW = document.querySelector('.questionsW');
+const middleSection = document.querySelector('.middle');
+const questionElement = middleSection.querySelector('h2');
+const choicesForm = middleSection.querySelector('.choices');
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -16,11 +19,9 @@ fetch('back.json')
     .then(response => response.json())
     .then(data => {
         const questions = data[0].questions; 
-        const middleSection = document.querySelector('.middle');
-        const questionElement = middleSection.querySelector('h2');
-        const choicesForm = middleSection.querySelector('.choices');
-
-
+        console.log(questions);
+        console.log(questions[0].choices[0]);
+        
         shuffle(questions);
 
         let currentQuestionIndex = parseInt(localStorage.getItem('currentQuestionIndex')) || 0;
@@ -33,6 +34,7 @@ fetch('back.json')
             questionElement.textContent = question.question;
             choicesForm.innerHTML = '';
 
+            console.log(question.choices , question);
             question.choices.forEach(choice => {
                 const label = document.createElement('label');
                 const input = document.createElement('input');
@@ -44,13 +46,15 @@ fetch('back.json')
                     input.checked = true;
                 }
 
+                
                 input.addEventListener('change', () => {
                     savedAnswers[currentQuestionIndex] = choice;
+                    console.log(choice, correctAnswers );
                     localStorage.setItem('savedAnswers', JSON.stringify(savedAnswers));
                 
                     correctAnswers = 0;
-                    for (let index in savedAnswers) {
-                        if (savedAnswers[index] === questions[index].correctAnswer) {
+                    for (let i in savedAnswers) {
+                        if (savedAnswers[i] === questions[i].correctAnswer) {
                             correctAnswers++;
                         }
                     }
@@ -70,8 +74,8 @@ fetch('back.json')
                 choicesForm.appendChild(label);
             });
 
-            prevButton.style.cursor = currentQuestionIndex === 0 ? 'not-allowed' : 'pointer';
-            nextButton.style.cursor = currentQuestionIndex === questions.length - 1 ? 'not-allowed' : 'pointer';
+            prevButton.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+            nextButton.style.visibility = currentQuestionIndex === questions.length - 1 ? 'hidden' : 'visible';
         }
 
         function updateFlaggedQuestionsUI() {
@@ -126,24 +130,24 @@ fetch('back.json')
         submitButton.addEventListener('click', () => {
             const answeredCount = Object.keys(savedAnswers).length;
 
-            if (answeredCount !== questions.length) {
-                warning.style.display = 'block';
-            } else {
+            // if (answeredCount !== questions.length) {
+            //     warning.style.display = 'block';
+            // } else {
                 calculateResult();
                 localStorage.removeItem('savedAnswers');
                 localStorage.removeItem('currentQuestionIndex');
                 localStorage.removeItem('correctAnswers');
                 localStorage.removeItem('flaggedQuestions');
-            }
+            // }
         });
 
         function calculateResult() {
             const percentage = Math.ceil((correctAnswers / (questions.length - 1)) * 100);
             localStorage.setItem('percentage', percentage);
             if (percentage >= 60) {
-                window.location.href = '6-success.html';
+                window.location.replace('6-success.html');
             } else {
-                window.location.href = '7-failed.html';
+                window.location.replace('7-failed.html');
             }
         }
     })
