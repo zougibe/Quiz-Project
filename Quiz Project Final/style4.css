@@ -7,11 +7,13 @@
 body {
   font-family: "Courier New", Courier, monospace;
   line-height: 2;
+  font-size: large;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   margin: 0;
+  background-color: #200219;
 }
 
 .container {
@@ -38,7 +40,7 @@ body {
   align-items: center;
   padding: 12px;
   background: #ff725e;
-  color: #e6e6e6;
+  color: black;
   border-radius: 8px;
 }
 
@@ -65,7 +67,7 @@ body {
 .middle h3 {
   font-size: 1rem;
   margin-bottom: 16px;
-  color: whitesmoke;
+  color: rgb(255, 255, 255);
   padding: 6px 12px;
   font-weight: 500;
   border-radius: 8px;
@@ -126,7 +128,7 @@ body {
   width: 100%;
   /* border:2px solid #ffffff;   */
   display: flex;
-  justify-content: space-between;
+  justify-content:space-evenly;
 }
 .lower button {
   font-family: "Courier New", Courier, monospace;
