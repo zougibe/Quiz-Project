@@ -128,8 +128,7 @@ fetch('back.json')
         warning.textContent = 'Please answer ALL the questions first';
 
         submitButton.addEventListener('click', () => {
-            const answeredCount = Object.keys(savedAnswers).length;
-
+            //const answeredCount = Object.keys(savedAnswers).length;
             // if (answeredCount !== questions.length) {
             //     warning.style.display = 'block';
             // } else {
