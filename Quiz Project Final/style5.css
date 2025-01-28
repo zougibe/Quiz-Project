@@ -1,3 +1,18 @@
+:root {
+  --font-family: "Courier New", Courier, monospace;
+  --background-color: #b0b5aa67;
+  --text-color: #3a2d38;
+  --heading-color: #ffffff;
+  --accent-color: #ff725e;
+  --button-hover: #e65d51;
+  --container-padding: 24px;
+  --container-border-radius: 16px;
+  --status-gap: 16px;
+  --status-font-size: 24px;
+  --heading-font-size: 22px;
+  --img-border-radius: 16px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,44 +21,63 @@
 
 body {
   margin: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-family);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
-  background: #3a2d38;
+  background-color: var(--background-color);
 }
 
 .container {
-  padding: 24px;
-  border-radius: 16px;
+  padding: var(--container-padding);
+  border-radius: var(--container-border-radius);
 }
 
 .status {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  font-size: 18px;
-  color: whitesmoke;
+  gap: var(--status-gap);
+  font-size: var(--status-font-size);
+  color: var(--accent-color);
 }
 
 .status h2 {
-  font-size: 22 px;
-  color: #ffffff;
-  font-weight: 500;
+  font-size: var(--heading-font-size);
+  color: var(--text-color);
+  font-weight: 550;
 }
 
 .img-gif img {
-  width: 100%;
-  border-radius: 16px;
+  border-radius: var(--img-border-radius);
   margin: 24px 0;
 }
 
 .text h1 {
   font-size: 24px;
-  color: #ff725e;
+  color: var(--accent-color);
   font-weight: bold;
+  margin-bottom: 24px; 
+}
+
+.logout-btn button {
+  background-color: var(--accent-color);
+  font-family: var(--font-family);
+  color: white;
+  font-size: 1.4rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 12px 16px;
+  align-self: center;
+  width: 50%;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05)
 }
