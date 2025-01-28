@@ -1,3 +1,21 @@
+:root {
+  --font-family: "Courier New", Courier, monospace;
+  --background-color: #b0b5aa67;
+  --text-color: #3a2d38;
+  --heading-color: #ffffff;
+  --accent-color: #ff725e;
+    --button-hover: #e65d51;
+  --status-font-size: 32px;
+  --status-gap: 16px;
+  --container-padding: 32px;
+  --container-border-radius: 16px;
+  --line-height: 2;
+  --paragraph-font-size: 18px;
+  --i-font-size: 24px;
+  --paragraph-font-weight: bold;
+  --img-border-radius: 16px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,53 +24,75 @@
 
 body {
   margin: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-family);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
-  background: #3a2d38;
+  background-color: var(--background-color);
 }
 
 .container {
-  padding: 32px;
-  border-radius: 16px;
+  padding: var(--container-padding);
+  border-radius: var(--container-border-radius);
 }
 
 .status {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: var(--status-gap);
   margin-bottom: 24px;
-  font-size: 32px;
-  color: whitesmoke;
+  font-size: var(--status-font-size);
+  color: var(--accent-color);
+  font-size: var(--i-font-size);
 }
 
 .status h2 {
-  font-size: 24px;
-  color: #ffffff;
-  font-weight: 500;
+  font-size: var(--i-font-size);
+  color: var(--text-color);
+  font-weight: 550;
 }
 
 .img-gif img {
-  border-radius: 16px;
+  border-radius: var(--img-border-radius);
   margin: 8px 0;
 }
 
 .text {
-  line-height: 2;
+  line-height: var(--line-height);
 }
 
 .text h1 {
-  font-size: 22px;
-  color: #ff725e;
+  font-size: 24px;
+  color: var(--accent-color);
   font-weight: bold;
+  margin-bottom: 16px; 
 }
 
 p {
-  font-size: 18px;
-  color: whitesmoke;
-  font-weight: bold;
+  font-size: var(--paragraph-font-size);
+  color: var(--text-color);
+  font-weight: var(--paragraph-font-weight);
+}
+
+.logout-btn button {
+  background-color: var(--accent-color);
+  font-family: var(--font-family);
+  color: white;
+  font-size: 1.4rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 12px 16px;
+  align-self: center;
+  width: 50%;
+  border-radius: 4px;
+  margin-top: 16px; 
+}
+
+button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05)
 }
