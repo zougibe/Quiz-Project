@@ -13,8 +13,8 @@
   <body>
     <div class="container">
       <div class="status">
-          <i class="icon fas fa-check-circle"></i>
-          <h2></h2>
+        <i class="icon fas fa-check-circle"></i>
+        <h2></h2>
       </div>
       <div class="img-gif">
         <img src="images/Leader.gif" alt="Success" />
@@ -23,17 +23,22 @@
         <h1></h1>
         <p>Your hard work has paid off .. Keep going</p>
       </div>
+      <div class="logout-btn">
+        <button onclick="logout()">Logout</button>
+      </div>
     </div>
-  <script>
-    const grade = localStorage.getItem("percentage");
-    const fname = localStorage.getItem("fname");
-    const lname = localStorage.getItem("lname");
-    const status = document.querySelector('h2');
-    const text = document.querySelector('h1');
-    
-    
-    status.textContent = `Congrats ${fname} ${lname}`;
-    text.textContent = `your Grade Is ${grade}%`;
-  </script>
+    <script>
+      const grade = localStorage.getItem("percentage");
+      const fname = localStorage.getItem("fname");
+      const lname = localStorage.getItem("lname");
+      const status = document.querySelector('h2');
+      const text = document.querySelector('h1');
+      status.textContent = `Congrats ${fname} ${lname}`;
+      text.textContent = `Your Grade Is ${grade}%`;
+
+      function logout() {
+        window.location.replace("2-login.html"); 
+      }
+    </script>
   </body>
 </html>
