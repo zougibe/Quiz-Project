@@ -18,19 +18,24 @@
       </div>
 
       <div class="img-gif">
-        <img src="images/Exams.gif" alt="Time Out" />
+        <img src="images/Exams...gif" alt="Time Out" />
       </div>
 
       <div class="text">
         <h1>Sorry Time Out!</h1>
+      </div>
+      <div class="logout-btn">
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
     <script>
       const fname = localStorage.getItem("fname");
       const lname = localStorage.getItem("lname");
       const text = document.querySelector('h1');
-      text.textContent = `Sorry ${fname} ${lname}, Your time Ended `;
+      text.textContent = `Sorry ${fname} ${lname}, Your time Ended`;
+      function logout() {
+        window.location.replace("2-login.html"); 
+      }
     </script>
   </body>
 </html>
-
