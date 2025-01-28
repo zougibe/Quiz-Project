@@ -153,7 +153,7 @@ flagButton.addEventListener('click', () => {
         });
 
         function calculateResult() {
-            const percentage = Math.ceil((correctAnswers / (questions.length - 1)) * 100);
+            const percentage = Math.ceil((correctAnswers / questions.length) * 100);
             localStorage.setItem('percentage', percentage);
             if (percentage >= 60) {
                 window.location.replace('6-success.html');
