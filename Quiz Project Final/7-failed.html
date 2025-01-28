@@ -13,15 +13,18 @@
   <body>
     <div class="container">
       <div class="status">
-        <i class="fas fa-times-circle" style="font-size: 40px; color: #d9534f;"></i>
+        <i class="fas fa-times-circle" style="font-size: 20px; color: #d9534f;"></i>
         <h2>Sorry, You Did Not Pass</h2>
       </div>
       <div class="img-gif">
-        <img src="images/Feeling sorry.gif" alt="Failure" />
+        <img src="images/Paranoia.gif" alt="Failure" />
       </div>
       <div class="text">
         <h1></h1>
         <p>Don't give up. Learn from this and come back stronger</p>
+      </div>
+      <div class="logout-btn">
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
     <script>
@@ -30,10 +33,11 @@
       const lname = localStorage.getItem("lname");
       const status = document.querySelector('h2');
       const text = document.querySelector('h1');
-      
-      
       status.textContent = `Sorry ${fname} ${lname}, You Did Not Pass`;
       text.textContent = `your Grade Is ${grade}%`;
+      function logout() {
+        window.location.replace("2-login.html"); 
+      }
     </script>
   </body>
 </html>
