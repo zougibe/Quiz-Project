@@ -109,7 +109,7 @@ body {
   font-weight: 500;
   background: transparent;
   color: var(--text-color);
-  border: 2px solid #ff725e;
+  border: 2px solid var(--background-color);
   border-radius: var(--border-radius);
   padding: 8px 16px;
   transition: background-color 0.3s ease, transform 0.2s ease;
