@@ -8,6 +8,8 @@ const questionsW = document.querySelector('.questionsW');
 const middleSection = document.querySelector('.middle');
 const questionElement = middleSection.querySelector('h2');
 const choicesForm = middleSection.querySelector('.choices');
+const counter = document.querySelector('.head .Qnum')
+
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -78,6 +80,7 @@ fetch('back.json')
                 flagButton.style.color = 'white';
                 flagButton.style.backgroundColor = '#3a2d38';
             }
+            qNumber()
 
         }
 
@@ -153,7 +156,7 @@ flagButton.addEventListener('click', () => {
         });
 
         function calculateResult() {
-            const percentage = Math.ceil((correctAnswers / questions.length) * 100);
+            const percentage = Math.ceil((correctAnswers / (questions.length - 1)) * 100);
             localStorage.setItem('percentage', percentage);
             if (percentage >= 60) {
                 window.location.replace('6-success.html');
@@ -161,8 +164,12 @@ flagButton.addEventListener('click', () => {
                 window.location.replace('7-failed.html');
             }
         }
+        function qNumber(){
+            const numb = localStorage.getItem('currentQuestionIndex')
+            counter.textContent=`${parseInt(numb)+1} of ${questions.length}`
+        }
     })
     .catch(error => console.error('Error fetching questions:', error));
-
+    
 const timer = new Countdown(15, '5-timeout.html');
 timer.start();
