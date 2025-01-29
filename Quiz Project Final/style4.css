@@ -77,14 +77,13 @@ body {
   transform: scale(1.04);
 }
 
-.middle h3 {
+.middle .nameQ {
   font-size: 1.1rem;
   margin-bottom: 16px;
   color: rgb(255, 255, 255);
   padding: 6px 12px;
   font-weight: 500;
   text-align: left;
-  border-bottom: 2px solid var(--primary-color); 
 }
 
 .middle h2 {
@@ -108,8 +107,9 @@ body {
   gap: 12px;
   font-size: 1rem;
   font-weight: 500;
-  background: var(--primary-color);
+  background: transparent;
   color: var(--text-color);
+  border: 2px solid #ff725e;
   border-radius: var(--border-radius);
   padding: 8px 16px;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -205,6 +205,15 @@ color: var(--text-color);
 .questionsW button:hover {
   background: var(--background-color);
   color: var(--card-background);
+}
+
+.head{
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--hover-color) ;
+  font-size: 1rem;
+  font-weight: lighter;
 }
 
 @media (max-width: 768px) {
