@@ -80,7 +80,7 @@ body {
 }
 
 .logout-btn button {
-  background-color: var(--accent-color);
+  background-color: #ff725e;
   font-family: var(--font-family);
   color: white;
   font-size: 1.2rem;
@@ -95,7 +95,6 @@ body {
 }
 
 button:hover {
-  background-color: var(--button-hover);
   transform: scale(1.05);
 }
 
