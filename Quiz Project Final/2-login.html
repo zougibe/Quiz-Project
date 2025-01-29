@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="script2.js"></script>
 </head>
-
-<body>
-  <form action="3-Startexam.html" class="flex" style="
-        width: 40%;
+<style>
+  form{
+    width: 40%;
         padding: min(4rem, 8%);
         background-color: #3a2d38;
         border-radius: 8px;
@@ -19,7 +18,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      ">
+  }
+  @media (max-width:990px) {
+    form{
+      width: 100%;
+    }
+  }
+</style>
+<body>
+  <form action="3-Startexam.html" class="flex">
     <input type="email" class="mailC" placeholder="Enter Your Email" required />
     <input type="password" class="passwordC" placeholder="Enter Your password" />
     <p  style="color: red;"> </p>
