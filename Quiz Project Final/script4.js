@@ -34,55 +34,69 @@ fetch('back.json')
         let savedAnswers = JSON.parse(localStorage.getItem('savedAnswers')) || {};
         let flaggedQuestions = JSON.parse(localStorage.getItem('flaggedQuestions')) || [];
 
-        function loadQuestion(index) {
-            const question = questions[index];
-            questionElement.textContent = question.question;
-            choicesForm.innerHTML = '';
-
-            // console.log(question.choices , question);
-            question.choices.forEach(choice => {
-                const label = document.createElement('label');
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'answer';
-                input.value = choice;
-
-                if (savedAnswers[index] === choice) {
-                    input.checked = true;
-                }
-
-
-                input.addEventListener('change', () => {
-                    savedAnswers[currentQuestionIndex] = choice;
-                    console.log(choice, correctAnswers);
-                    localStorage.setItem('savedAnswers', JSON.stringify(savedAnswers));
-
-                    correctAnswers = 0;
-                    for (let i in savedAnswers) {
-                        if (savedAnswers[i] === questions[i].correctAnswer) {
-                            correctAnswers++;
+                function loadQuestion(index) {
+                    const question = questions[index];
+                    questionElement.textContent = question.question;
+                    choicesForm.innerHTML = '';
+                    const labels = [];
+                
+                    question.choices.forEach(choice => {
+                        const label = document.createElement('label');
+                        const input = document.createElement('input');
+                        input.type = 'radio';
+                        input.name = 'answer';
+                        input.value = choice;
+                
+                        if (savedAnswers[index] === choice) {
+                            input.checked = true;
+                            label.style.background = '#e65d51';
+                            label.style.color = 'white';
                         }
-                    }
-                    localStorage.setItem('correctAnswers', correctAnswers);
-                    console.log(correctAnswers);
-                    console.log(questions.length);
-                });
-                label.appendChild(input);
-                label.appendChild(document.createTextNode(choice));
-                choicesForm.appendChild(label);
-            });
-            prevButton.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
-            nextButton.style.visibility = currentQuestionIndex === questions.length - 1 ? 'hidden' : 'visible';
-            if(flaggedQuestions.includes(currentQuestionIndex)){
-                flagButton.style.color = '#3a2d38';
-                flagButton.style.backgroundColor = 'white';
-            } else {
-                flagButton.style.color = 'white';
-                flagButton.style.backgroundColor = '#3a2d38';
-            }
-            qNumber()
+                
+                        input.addEventListener('change', () => {
+                            savedAnswers[currentQuestionIndex] = choice;
+                            localStorage.setItem('savedAnswers', JSON.stringify(savedAnswers));
+                
+                            correctAnswers = 0;
+                            for (let i in savedAnswers) {
+                                if (savedAnswers[i] === questions[i].correctAnswer) {
+                                    correctAnswers++;
+                                }
+                            }
+                            localStorage.setItem('correctAnswers', correctAnswers);
 
-        }
+                            labels.forEach(lbl => {
+                                lbl.style.background = 'transparent';
+                                lbl.style.color = 'white';
+                            });
+                
+
+                            if (input.checked) {
+                                label.style.background = '#e65d51';
+                                label.style.color = 'white';
+                            }
+                        });
+                
+                        label.appendChild(input);
+                        label.appendChild(document.createTextNode(choice));
+                        choicesForm.appendChild(label);
+                        labels.push(label);
+                    });
+                
+                    prevButton.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+                    nextButton.style.visibility = currentQuestionIndex === questions.length - 1 ? 'hidden' : 'visible';
+                
+                    if (flaggedQuestions.includes(currentQuestionIndex)) {
+                        flagButton.style.color = '#3a2d38';
+                        flagButton.style.backgroundColor = 'white';
+                    } else {
+                        flagButton.style.color = 'white';
+                        flagButton.style.backgroundColor = '#3a2d38';
+                    }
+                
+                    qNumber();
+                }
+                
 
         function updateFlaggedQuestions() {
             questionsW.innerHTML = '';
@@ -156,7 +170,7 @@ flagButton.addEventListener('click', () => {
         });
 
         function calculateResult() {
-            const percentage = Math.ceil((correctAnswers / (questions.length - 1)) * 100);
+            const percentage = Math.ceil((correctAnswers / questions.length) * 100);
             localStorage.setItem('percentage', percentage);
             if (percentage >= 60) {
                 window.location.replace('6-success.html');
