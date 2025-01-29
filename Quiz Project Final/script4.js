@@ -33,8 +33,6 @@ fetch('back.json')
         let correctAnswers = parseInt(localStorage.getItem('correctAnswers')) || 0;
         let savedAnswers = JSON.parse(localStorage.getItem('savedAnswers')) || {};
         let flaggedQuestions = JSON.parse(localStorage.getItem('flaggedQuestions')) || [];
-        let numb = parseInt (localStorage.getItem('currentQuestionIndex')) || 0;
-
 
                 function loadQuestion(index) {
                     const question = questions[index];
@@ -181,7 +179,8 @@ flagButton.addEventListener('click', () => {
             }
         }
         function qNumber(){
-            counter.textContent=`${parseInt(numb+1} of ${questions.length}`
+            let numb = parseInt (localStorage.getItem('currentQuestionIndex')) || 0;
+            counter.textContent=`${numb+1} of ${questions.length}`
         }
     })
     .catch(error => console.error('Error fetching questions:', error));
