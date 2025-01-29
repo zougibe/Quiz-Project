@@ -277,6 +277,7 @@ label:not(:checked):hover {
 
   .lower button {
     width: 100%;
+    margin-bottom: 3px;
   }
 }
 
