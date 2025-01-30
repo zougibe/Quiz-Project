@@ -65,9 +65,9 @@ fetch('back.json')
                             }
                             localStorage.setItem('correctAnswers', correctAnswers);
 
-                            labels.forEach(lbl => {
-                                lbl.style.background = 'transparent';
-                                lbl.style.color = 'white';
+                            labels.forEach(label => {
+                                label.style.background = 'transparent';
+                                label.style.color = 'white';
                             });
                 
 
@@ -94,7 +94,7 @@ fetch('back.json')
                         flagButton.style.backgroundColor = '#3a2d38';
                     }
                 
-                    qNumber();
+                questionNumber();
                 }
                 
 
@@ -178,7 +178,7 @@ flagButton.addEventListener('click', () => {
                 window.location.replace('7-failed.html');
             }
         }
-        function qNumber(){
+        function questionNumber(){
             let numb = parseInt (localStorage.getItem('currentQuestionIndex')) || 0;
             counter.textContent=`${numb+1} of ${questions.length}`
         }
