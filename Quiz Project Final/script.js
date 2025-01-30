@@ -13,7 +13,7 @@ passC.addEventListener("blur", validateConfirmPassword);
 
 function validateFirstName() {
     if (/\d/.test(fname.value)|| fname.value == "" || fname.value.length <= 3 ) {
-        document.querySelector(".fnameE").textContent = "Only Characters";
+        document.querySelector(".fnameE").textContent = "Only Characters and more than 2 Characters";
         fname.classList.add("apply-shake");
         return false;
     } else {
@@ -25,7 +25,7 @@ function validateFirstName() {
 
 function validateLastName() {
     if (/\d/.test(lname.value)|| lname.value == "" || lname.value.length <= 3) {
-        document.querySelector(".lnameE").textContent = "Only Characters";
+        document.querySelector(".lnameE").textContent = "Only Characters and more than 2 Characters";
         lname.classList.add("apply-shake");
         return false;
     } else {
