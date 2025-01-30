@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration form</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
@@ -16,20 +16,23 @@
         </div>
         <div class="details">
             <header>
-            <h1>Create An Account</h1>
-            <p>Have Already An Account <span><a href="2-login.html">sign in</a></span></p>
+                <h1>Create An Account</h1>
+                <p>Have Already An Account <span><a href="2-login.html">sign in</a></span></p>
             </header>
             <form action="2-login.html" class="flex">
                 <input type="text" class="fname" placeholder="Enter Your First Name" required>
-                <p class="fnameE" style="color: red;"></p>
+                <h3 class="fnameE" style="color:red"></h3>
                 <input type="text" class="lname" placeholder="Enter Your Last Name" required>
-                <div class="lnameE" style="color: red;"></div>
+                <h3 class="lnameE" style="color:red"></h3>
                 <input type="email" class="mail" placeholder="Enter Your Email " required>
-                <div class="mailE" style="color: red;"></div>
+                <h3 class="mailE" style="color:red"></h3>
+
                 <input type="password" class="pass" placeholder="Enter Your password">
-                <div class="passE" style="color: red;"></div>
+                <h3 class="passE" style="color:red"></h3>
+
                 <input type="password" class="passC" placeholder="Re-enter Your password">
-                <div class="passCE" style="color: red;"></div>
+                <h3 class="passCE" style="color:red"></h3>
+
                 <button type="submit">Signup</button>
             </form>
         </div>
