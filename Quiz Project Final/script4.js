@@ -185,5 +185,5 @@ flagButton.addEventListener('click', () => {
     })
     .catch(error => console.error('Error fetching questions:', error));
     
-const timer = new Countdown(15, '5-timeout.html');
+const timer = new Countdown(5, '5-timeout.html');
 timer.start();
