@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Success</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style6.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="status">
-        <i class="icon fas fa-check-circle"></i>
-        <h2></h2>
-      </div>
-      <div class="img-gif">
-        <img src="images/Leader.gif" alt="Success" />
-      </div>
-      <div class="text">
-        <h1></h1>
-        <p>Your hard work has paid off .. Keep going</p>
-      </div>
-      <div class="logout-btn">
-        <button onclick="logout()">Logout</button>
-      </div>
-    </div>
-    <script>
-      const grade = localStorage.getItem("percentage");
-      const fname = localStorage.getItem("fname");
-      const lname = localStorage.getItem("lname");
-      const status = document.querySelector('h2');
-      const text = document.querySelector('h1');
-      status.textContent = `Congrats ${fname} ${lname}`;
-      text.textContent = `Your Grade Is ${grade}%`;
 
-      function logout() {
-        window.location.replace("2-login.html"); 
-      }
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Success</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style6.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="status">
+      <i class="icon fas fa-check-circle"></i>
+      <h2></h2>
+      <p id="starRating"></p>
+    </div>
+    <div class="img-gif">
+      <img src="images/Leader.gif" alt="Success" />
+    </div>
+    <div class="text">
+      <h1></h1>
+      <p>Your hard work has paid off .. Keep going</p>
+    </div>
+    <div class="logout-btn">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <script>
+    const grade = localStorage.getItem("percentage");
+    const fname = localStorage.getItem("fname");
+    const lname = localStorage.getItem("lname");
+    const status = document.querySelector('h2');
+    const text = document.querySelector('h1');
+    const stars = document.getElementById('starRating');
+    stars.textContent = localStorage.getItem('stars') || '☆☆☆☆☆';
+    status.textContent = `Congrats ${fname} ${lname}`;
+    text.textContent = `Your Grade Is ${grade}%`;
+
+    function logout() {
+      window.location.replace("2-login.html");
+    }
+  </script>
+</body>
+
 </html>
