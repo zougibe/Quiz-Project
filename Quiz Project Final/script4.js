@@ -1,56 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
+import { Countdown } from './countdown.js';
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exam Questions</title>
-  <link rel="stylesheet" href="style4.css">
-  <script type="module" src="script4.js"></script>
-  <!-- Add Font Awesome for icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
+const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.back');
+const submitButton = document.querySelector('.submit');
+const flagButton = document.querySelector('.flaged');
+const questionsW = document.querySelector('.questionsW');
+const middleSection = document.querySelector('.middle');
+const questionElement = middleSection.querySelector('h2');
+const choicesForm = middleSection.querySelector('.choices');
+const counter = document.querySelector('.head .Qnum');
 
-<body>
-  <div class="container">
-    <section class="main">
-      <section class="top">
-        <div id="countdown">
-        </div>
-        <!-- Button with a flag icon -->
-        <button class="flaged">
-          <i class="fas fa-flag"></i>
-        </button>
-      </section>
-      <section class="middle">
-        <div class="head">
-          <h3 class="nameQ">Choose The Correct Answer:</h3>
-          <h3 class="Qnum"></h3>
-        </div>
-        <h2></h2>
-        <form class="choices">
-          <!-- <label> <input type="radio" name="answer" value=""> </label>
-          <label> <input type="radio" name="answer" value=""> </label>
-          <label> <input type="radio" name="answer" value=""> </label>
-          <label> <input type="radio" name="answer" value=""> </label> -->
-        </form>
-      </section>
-      <section class="lower">
-        <div class="btns">
-          <div class="nav">
-            <button class="back">Previous</button>
-            <button class="next">Next</button>
-          </div>
-          <button class="submit">Submit</button>
-        </div>
-      </section>
-    </section>
-    <section class="flagged">
-      <h2>Flagged Questions</h2>
-      <section class="questionsW">
-      </section>
-    </section>
-  </div>
-</body>
 
-</html>
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+fetch('back.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        if (!data || data.length === 0 || !data[0].questions) {
+            throw new Error("Invalid JSON format or missing questions.");
+        }
+        const questions = data[0].questions;
+        // console.log(questions);
+        // console.log(questions[0].choices[0]);
+
+        shuffle(questions);
+
+        let currentQuestionIndex = parseInt(localStorage.getItem('currentQuestionIndex')) || 0;
+        console.log(currentQuestionIndex);
+
+        let correctAnswers = parseInt(localStorage.getItem('correctAnswers')) || 0;
+        let savedAnswers = JSON.parse(localStorage.getItem('savedAnswers')) || {};
+        let flaggedQuestions = JSON.parse(localStorage.getItem('flaggedQuestions')) || [];
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionElement.textContent = question.question;
+            choicesForm.innerHTML = '';
+            const labels = [];
+
+            question.choices.forEach(choice => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.value = choice;
+
+                if (savedAnswers[index] === choice) {
+                    input.checked = true;
+                    label.style.background = '#e65d51';
+                    label.style.color = 'white';
+                }
+
+                input.addEventListener('change', () => {
+                    savedAnswers[currentQuestionIndex] = choice;
+                    localStorage.setItem('savedAnswers', JSON.stringify(savedAnswers));
+
+                    correctAnswers = 0;
+                    for (let i in savedAnswers) {
+                        if (savedAnswers[i] === questions[i].correctAnswer) {
+                            correctAnswers++;
+                        }
+                    }
+                    localStorage.setItem('correctAnswers', correctAnswers);
+
+                    labels.forEach(label => {
+                        label.style.background = 'transparent';
+                        label.style.color = 'white';
+                    });
+
+
+                    if (input.checked) {
+                        label.style.background = '#e65d51';
+                        label.style.color = 'white';
+                    }
+                });
+
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(choice));
+                choicesForm.appendChild(label);
+                labels.push(label);
+            });
+
+            prevButton.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+            nextButton.style.visibility = currentQuestionIndex === questions.length - 1 ? 'hidden' : 'visible';
+
+            if (flaggedQuestions.includes(currentQuestionIndex)) {
+                flagButton.style.color = '#3a2d38';
+                flagButton.style.backgroundColor = 'white';
+            } else {
+                flagButton.style.color = 'white';
+                flagButton.style.backgroundColor = '#3a2d38';
+            }
+
+            questionNumber();
+        }
+
+
+        function updateFlaggedQuestions() {
+            questionsW.innerHTML = '';
+            flaggedQuestions.forEach(index => {
+                const button = document.createElement('button');
+                button.textContent = `Question ${index + 1}`;
+                button.className = 'flagged-question';
+                button.addEventListener('click', () => {
+                    currentQuestionIndex = index;
+                    localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                    loadQuestion(currentQuestionIndex);
+                });
+                questionsW.appendChild(button);
+            });
+        }
+
+        loadQuestion(currentQuestionIndex);
+        updateFlaggedQuestions();
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                loadQuestion(currentQuestionIndex);
+                console.log(currentQuestionIndex);
+
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        flagButton.addEventListener('click', () => {
+            if (!flaggedQuestions.includes(currentQuestionIndex)) {
+                flaggedQuestions.push(currentQuestionIndex);
+                flagButton.style.color = '#3a2d38';
+                flagButton.style.backgroundColor = 'white';
+            } else {
+                flaggedQuestions = flaggedQuestions.filter(index => index !== currentQuestionIndex);
+                flagButton.style.color = 'white';
+                flagButton.style.backgroundColor = '#3a2d38';
+            }
+            localStorage.setItem('flaggedQuestions', JSON.stringify(flaggedQuestions));
+            updateFlaggedQuestions();
+        });
+        // console.log((flaggedQuestions.includes(currentQuestionIndex)));
+        //         const warning = document.createElement('h2');
+        //         const lower = document.querySelector('.lower');
+        //         lower.append(warning);
+        //         warning.style = 'color:red; font-size:1.3rem';
+        //         warning.style.display = 'none';
+        //         warning.textContent = 'Please answer ALL the questions first';
+
+        submitButton.addEventListener('click', () => {
+            // const answeredCount = Object.keys(savedAnswers).length;
+
+            // if (answeredCount !== questions.length) {
+            //     warning.style.display = 'block';
+            // } else {
+            calculateResult();
+            localStorage.removeItem('savedAnswers');
+            localStorage.removeItem('currentQuestionIndex');
+            localStorage.removeItem('correctAnswers');
+            localStorage.removeItem('flaggedQuestions');
+            // }
+        });
+
+        function calculateResult() {
+            const percentage = questions.length > 0 ? Math.ceil((correctAnswers / questions.length) * 100) : 0;
+            localStorage.setItem('percentage', percentage);
+
+            const stars = getStarRating(percentage);
+            localStorage.setItem('stars', stars);
+
+            if (percentage >= 60) {
+                window.location.replace('6-success.html');
+            } else {
+                window.location.replace('7-failed.html');
+            }
+        }
+
+        function getStarRating(percentage) {
+            let starCount = Math.round((percentage / 100) * 5);
+            let filledStars = '★'.repeat(starCount);
+            let emptyStars = '☆'.repeat(5 - starCount);
+            return filledStars + emptyStars;
+        }
+        function questionNumber() {
+            let numb = parseInt(localStorage.getItem('currentQuestionIndex')) || 0;
+            counter.textContent = `${numb + 1} of ${questions.length}`
+        }
+        function showError(message) {
+            const errorContainer = document.createElement('div');
+            errorContainer.style.color = 'red';
+            errorContainer.style.textAlign = 'center';
+            errorContainer.style.padding = '10px';
+            errorContainer.textContent = message;
+            document.body.prepend(errorContainer);
+        }
+    }).catch(error => {
+        console.error('Error fetching questions:', error);
+        showError("Failed to load questions. Please refresh or try again later.");
+    });
+const timer = new Countdown(5, '5-timeout.html');
+timer.start();
