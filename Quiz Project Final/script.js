@@ -48,7 +48,7 @@ function validateEmail() {
     }
     console.log(mail.value);
     
-    if (isDuplicateEmail(mail.value)) {
+    if (isDuplicateEmail(mail.value.toLowerCase())) {
         console.log("Email already exists!");
         document.querySelector(".mailE").textContent = "Email already exists!";
         mail.classList.add("apply-shake");
