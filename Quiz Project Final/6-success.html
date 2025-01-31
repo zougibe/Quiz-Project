@@ -14,13 +14,13 @@
     <div class="status">
       <i class="icon fas fa-check-circle"></i>
       <h2></h2>
-      <p id="starRating"></p>
     </div>
     <div class="img-gif">
       <img src="images/Leader.gif" alt="Success" />
     </div>
     <div class="text">
       <h1></h1>
+      <p id="starRating" style="font-size: 36px;"></p>
       <p>Your hard work has paid off .. Keep going</p>
     </div>
     <div class="logout-btn">
@@ -33,8 +33,7 @@
     const lname = localStorage.getItem("lname");
     const status = document.querySelector('h2');
     const text = document.querySelector('h1');
-    const stars = document.getElementById('starRating');
-    stars.textContent = localStorage.getItem('stars') || '☆☆☆☆☆';
+    document.getElementById('starRating').textContent = localStorage.getItem('stars') || '☆☆☆☆☆';
     status.textContent = `Congrats ${fname} ${lname}`;
     text.textContent = `Your Grade Is ${grade}%`;
 
