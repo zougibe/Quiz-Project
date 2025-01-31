@@ -9,7 +9,7 @@ btn.addEventListener("click", validateE);
 
 function validateE(e) {
     e.preventDefault();
-    let user = userArr.find(user => user.email === mailC.value && user.password === passwordC.value);
+    let user = userArr.find(user => user.email === mailC.value.toLowerCase() && user.password === passwordC.value);
 
     if (!user) {
         err.textContent = "The mail or the password is wrong";
